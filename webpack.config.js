@@ -1,5 +1,6 @@
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import webpack from 'webpack'
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
@@ -9,6 +10,7 @@ module.exports = {
   },
   mode: process.env.NODE_ENV || 'development',
   resolve: {
+    extensions: ['.js', '.jsx'],
     modules: [
       path.resolve(__dirname, 'src'),
       'node_modules'
@@ -25,14 +27,6 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.(css|scss)$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-      },
-      {
         test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
         loaders: ['file-loader']
       }
@@ -41,6 +35,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html')
+    }),
+    new webpack.ProvidePlugin({
+      'React': 'react'
     })
   ]
 }
