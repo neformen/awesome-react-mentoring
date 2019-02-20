@@ -18,15 +18,15 @@ const createQuery = (params, possibleParams) => Object.entries(params)
   .join('&')
 
 function getHeadlines (params) {
-  return fetch(`${url}/top-headlines?${createQuery(params, headlinesParams)}`, { headers }).then(parseResponse)
+  return window.fetch(`${url}/top-headlines?${createQuery(params, headlinesParams)}`, { headers }).then(parseResponse)
 }
 
 function getAllNews (params) {
-  return fetch(`${url}/everything?${createQuery(params, everythingParams)}`, { headers }).then(parseResponse)
+  return window.fetch(`${url}/everything?${createQuery(params, everythingParams)}`, { headers }).then(parseResponse)
 }
 
 function getSources (params) {
-  return fetch(`${url}/sources?${createQuery(params, sourcesParams)}`, { headers }).then(parseResponse)
+  return window.fetch(`${url}/sources?${createQuery(params, sourcesParams)}`, { headers }).then(parseResponse)
 }
 
 export {

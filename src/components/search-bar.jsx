@@ -25,7 +25,7 @@ export class SeachBar extends Component {
   }
   onSearch () {
     getHeadlines({ q: this.state.searchWord }).then((data) => {
-      console.log(data)
+      this.props.addArticle(data.articles)
     })
   }
   render () {

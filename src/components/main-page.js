@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import { SeachBar } from './search-bar'
+import { ArticleList } from './article-list'
 
 export const MainPage = () => {
   const [ articles, setArticles ] = useState([])
-  const addAtricle = (article) => {
-    setArticles(articles.concat(article))
+  const addAtricle = (articles) => {
+    setArticles(articles)
   }
 
   return (
     <div>
       <SeachBar addArticle={addAtricle} />
-      <div>{articles}</div>
+      <ArticleList articles={articles} />
     </div>
   )
 }
