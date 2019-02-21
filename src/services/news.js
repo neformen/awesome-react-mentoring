@@ -1,4 +1,5 @@
 import { apiKey } from './../../config'
+import { nonEmptyString } from './validations'
 
 const url = 'https://newsapi.org/v2'
 const headers = {
@@ -13,7 +14,7 @@ const sourcesParams = ['category', 'language', 'country']
 
 const parseResponse = (response) => response.json()
 const createQuery = (params, possibleParams) => Object.entries(params)
-  .filter((param) => possibleParams.includes(param[0]))
+  .filter((param) => possibleParams.includes(param[0]) && nonEmptyString(param[1]))
   .map(param => `${param[0]}=${param[1]}`)
   .join('&')
 

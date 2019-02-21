@@ -5,20 +5,20 @@ import styled from 'styled-components'
 import { MainPage } from './components/main-page'
 
 const Header = styled.h1`
-  color: red;
+  color: green;
+  text-align: center;
 `
 
-const HelloWorld = () => {
+const App = () => {
   return (
     <div>
-      <Header>Hello there World!</Header>
+      <Header>Your personal news keeper</Header>
       <MainPage />
     </div>)
 }
 ReactDOM.render(
-  <HelloWorld />,
+  <App />,
   document.getElementById('root')
 )
 
-/* 9a3b0f91bf184098baa9d66a8342dac5 */
 /* https://newsapi.org/docs/get-started */
