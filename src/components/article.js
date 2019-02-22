@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import defaultImage from'./../static/default-image.jpg';
+import defaultImage from './../static/default-image.jpg'
 
 const ArticleWraper = styled.a`
   display: flex;

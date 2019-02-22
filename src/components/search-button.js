@@ -5,7 +5,7 @@ const SeachButtonWrapper = styled.button`
 `
 
 export const SeachButton = (props) => {
-    return (
-        <SeachButtonWrapper onClick={props.onSearchClick}>Search</SeachButtonWrapper>
-    )
+  return (
+    <SeachButtonWrapper onClick={props.onSearchClick}>Search</SeachButtonWrapper>
+  )
 }
