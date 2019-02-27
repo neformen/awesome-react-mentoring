@@ -17,18 +17,18 @@ const createQuery = (params, possibleParams) => Object.entries(params)
   .join('&')
 
 const getHeadlines = async (params) => {
-  const newsJson = await window.fetch(`${url}/top-headlines?${createQuery(params, headlinesParams)}`, { headers, mode: 'cors' });
-  return await newsJson.json();
+  const newsJson = await window.fetch(`${url}/top-headlines?${createQuery(params, headlinesParams)}`, { headers, mode: 'cors' })
+  return newsJson.json()
 }
 
 const getAllNews = async (params) => {
-  const newsJson = await window.fetch(`${url}/everything?${createQuery(params, everythingParams)}`, { headers, mode: 'cors' });
-  return await newsJson.json();
+  const newsJson = await window.fetch(`${url}/everything?${createQuery(params, everythingParams)}`, { headers, mode: 'cors' })
+  return newsJson.json()
 }
 
 const getSources = async (params) => {
-  const sourcesJson = await window.fetch(`${url}/sources?${createQuery(params, sourcesParams)}`, { headers, mode: 'cors' });
-  return await sourcesJson.json();
+  const sourcesJson = await window.fetch(`${url}/sources?${createQuery(params, sourcesParams)}`, { headers, mode: 'cors' })
+  return sourcesJson.json()
 }
 
 export {

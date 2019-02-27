@@ -16,8 +16,8 @@ export const SearchMenu = (props) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchCountry, setSearchCountry] = useState('')
   const getArticles = async (event) => {
-    event.preventDefault();
-    const data = await getHeadlines({ q: searchQuery, country: searchCountry });
+    event.preventDefault()
+    const data = await getHeadlines({ q: searchQuery, country: searchCountry })
     props.addArticle(data.articles)
   }
   return (
