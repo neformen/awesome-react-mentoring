@@ -1,12 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import styled from 'styled-components'
 
-import 'index.scss'
+import { MainPage } from './components/main-page'
 
-let HelloWorld = () => {
-  return <h1>Hello there World!</h1>
+import 'normalize.css';
+
+const Header = styled.h1`
+  color: green;
+  text-align: center;
+`
+
+const App = () => {
+  return (
+    <div>
+      <Header>Your personal news keeper</Header>
+      <MainPage />
+    </div>)
 }
 ReactDOM.render(
-  <HelloWorld />,
+  <App />,
   document.getElementById('root')
 )
+
+/* https://newsapi.org/docs/get-started */
