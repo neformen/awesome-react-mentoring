@@ -2,10 +2,6 @@ import styled from 'styled-components'
 import defaultImage from './../static/default-image.jpg'
 
 const ArticleWraper = styled.a`
-  display: flex;
-  flex-direction: column;
-  width: 25%;
-  padding: 10px;
   text-decoration: none;
   color: black;
   :hover {
@@ -15,7 +11,9 @@ const ArticleWraper = styled.a`
 
 const ArticleImage = styled.img({
   maxWidth: '100%',
-  maxHeight: '200px'
+  maxHeight: '200px',
+  display: 'block',
+  margin: 'auto'
 })
 
 const ArticleTitle = styled.h3({

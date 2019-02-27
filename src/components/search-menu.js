@@ -6,24 +6,25 @@ import { SeachButton } from './search-button'
 import { useState } from 'react'
 import { getHeadlines } from '../services/news'
 
-const SearchMenuWrapper = styled.div`
+const SearchMenuWrapper = styled.form`
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 15px;
 `
 
 export const SearchMenu = (props) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchCountry, setSearchCountry] = useState('')
-  const getArticles = () => {
-    getHeadlines({ q: searchQuery, country: searchCountry }).then((data) => {
-      props.addArticle(data.articles)
-    })
+  const getArticles = async (event) => {
+    event.preventDefault();
+    const data = await getHeadlines({ q: searchQuery, country: searchCountry });
+    props.addArticle(data.articles)
   }
   return (
-    <SearchMenuWrapper>
+    <SearchMenuWrapper onSubmit={getArticles}>
       <CountryDropdown options={possibleCountries} onCountryChange={setSearchCountry} />
       <SeachInput setSearchQuery={setSearchQuery} />
-      <SeachButton onSearchClick={getArticles} />
+      <SeachButton />
     </SearchMenuWrapper>
   )
 }

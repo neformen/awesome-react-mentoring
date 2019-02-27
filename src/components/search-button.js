@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-const SeachButtonWrapper = styled.button`
+const SeachButtonWrapper = styled.input`
     color: red;
 `
 
-export const SeachButton = (props) => {
+export const SeachButton = () => {
   return (
-    <SeachButtonWrapper onClick={props.onSearchClick}>Search</SeachButtonWrapper>
+    <SeachButtonWrapper type='submit' value='Search' />
   )
 }
