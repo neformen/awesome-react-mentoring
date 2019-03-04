@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { connect } from "react-redux"
+import { addArticles } from "./../redux/actions";
 import { CountryDropdown } from './country-dropdown'
 import { possibleCountries } from './../constants'
 import { SeachInput } from './search-input'
@@ -12,13 +14,20 @@ const SearchMenuWrapper = styled.form`
   margin-bottom: 15px;
 `
 
-export const SearchMenu = (props) => {
+function mapDispatchToProps(dispatch) {
+  console.log(addArticles(articles))
+  return {
+    addArticles: articles => dispatch(addArticles(articles))
+  };
+}
+
+const ConnectedSearchMenu = (props) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchCountry, setSearchCountry] = useState('')
   const getArticles = async (event) => {
     event.preventDefault()
     const data = await getHeadlines({ q: searchQuery, country: searchCountry })
-    props.addArticle(data.articles)
+    props.addArticles(data.articles)
   }
   return (
     <SearchMenuWrapper onSubmit={getArticles}>
@@ -28,3 +37,5 @@ export const SearchMenu = (props) => {
     </SearchMenuWrapper>
   )
 }
+
+export const SearchMenu = connect(null, mapDispatchToProps)(ConnectedSearchMenu);

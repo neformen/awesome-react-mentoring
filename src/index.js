@@ -4,6 +4,9 @@ import styled from 'styled-components'
 
 import { MainPage } from './components/main-page'
 
+import { Provider } from 'react-redux'
+import store from './redux/store'
+
 import 'normalize.css'
 
 const Header = styled.h1`
@@ -19,7 +22,9 @@ const App = () => {
     </div>)
 }
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 )
 

@@ -10,8 +10,8 @@ export const MainPage = () => {
 
   return (
     <div>
-      <SearchMenu addArticle={addArticle} />
-      <ArticleList articles={articles} />
+      <SearchMenu />
+      <ArticleList />
     </div>
   )
 }
