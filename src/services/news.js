@@ -1,5 +1,7 @@
+import { ajax } from 'rxjs/ajax'
 import { apiKey } from './../../config'
 import { nonEmptyString } from './validations'
+import { map } from 'rxjs/operators'
 
 const url = 'https://newsapi.org/v2'
 const headers = {
@@ -16,9 +18,15 @@ const createQuery = (params, possibleParams) => Object.entries(params)
   .map(param => `${param[0]}=${param[1]}`)
   .join('&')
 
-const getHeadlines = async (params) => {
-  const newsJson = await window.fetch(`${url}/top-headlines?${createQuery(params, headlinesParams)}`, { headers, mode: 'cors' })
-  return newsJson.json()
+const getHeadlines = (params) => {
+  return ajax({
+    url: `${url}/top-headlines?${createQuery(params, headlinesParams)}`,
+    headers,
+    crossDomain: true,
+    method: 'GET'
+  }).pipe(
+    map((data) => data.response.articles)
+  )
 }
 
 const getAllNews = async (params) => {

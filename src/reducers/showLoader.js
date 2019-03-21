@@ -1,5 +1,4 @@
-import { TOGGLE_LOADER } from "../actionTypes";
-
+import { TOGGLE_LOADER } from '../actions'
 
 const showLoader = (state = false, action) => {
   switch (action.type) {
@@ -7,9 +6,9 @@ const showLoader = (state = false, action) => {
       return action.payload
     }
     default: {
-      return state;
+      return state
     }
   }
-};
+}
 
-export default showLoader;
+export default showLoader

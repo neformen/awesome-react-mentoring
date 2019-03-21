@@ -1,2 +1,0 @@
-export const ADD_ARTICLES = "ADD_ARTICLES";
-export const TOGGLE_LOADER = "TOGGLE_LOADER";

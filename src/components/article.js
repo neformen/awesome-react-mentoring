@@ -21,7 +21,7 @@ const ArticleTitle = styled.h3({
   marginBottom: '15px'
 })
 
-export const Article = ({article}) => {
+export const Article = ({ article }) => {
   let articleImageUrl = article.urlToImage ? article.urlToImage : defaultImage
   return (
     <ArticleWraper href={article.url}>

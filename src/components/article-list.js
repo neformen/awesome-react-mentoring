@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import { Article } from './article'
-import { Loader } from "./loader";
+import { Loader } from './loader'
 
 const ListWrapper = styled.div`
   display: grid;
@@ -12,11 +12,11 @@ const ListWrapper = styled.div`
 `
 
 const mapStateToProps = state => {
-  const { articles, showLoader } = state;
-  return { articles, showLoader };
-};
+  const { articles, showLoader } = state
+  return { articles, showLoader }
+}
 
-const ConnectedArticleList = ({articles, showLoader}) => {
+const ConnectedArticleList = ({ articles, showLoader }) => {
   const articleComponets = articles.map((article, index) => <Article key={index} article={article} />)
   return (
     <ListWrapper>
@@ -26,4 +26,4 @@ const ConnectedArticleList = ({articles, showLoader}) => {
   )
 }
 
-export const ArticleList = connect(mapStateToProps)(ConnectedArticleList);
+export const ArticleList = connect(mapStateToProps)(ConnectedArticleList)
