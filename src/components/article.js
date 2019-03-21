@@ -21,13 +21,13 @@ const ArticleTitle = styled.h3({
   marginBottom: '15px'
 })
 
-export const Article = ({ article }) => {
-  let articleImageUrl = article.urlToImage ? article.urlToImage : defaultImage
+export const Article = ({ urlToImage, url, title, description }) => {
+  let articleImageUrl = urlToImage || defaultImage
   return (
-    <ArticleWraper href={article.url}>
-      <ArticleImage src={articleImageUrl} alt={article.title} />
-      <ArticleTitle>{article.title}</ArticleTitle>
-      <div>{article.description}</div>
+    <ArticleWraper href={url}>
+      <ArticleImage src={articleImageUrl} alt={title} />
+      <ArticleTitle>{title}</ArticleTitle>
+      <div>{description}</div>
     </ArticleWraper>
   )
 }

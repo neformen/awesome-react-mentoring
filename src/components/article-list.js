@@ -8,7 +8,6 @@ const ListWrapper = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  position: relative;
 `
 
 const mapStateToProps = state => {
@@ -17,7 +16,7 @@ const mapStateToProps = state => {
 }
 
 const ConnectedArticleList = ({ articles, showLoader }) => {
-  const articleComponets = articles.map((article, index) => <Article key={index} article={article} />)
+  const articleComponets = articles.map((article, index) => <Article key={index} {...article} />)
   return (
     <ListWrapper>
       {articleComponets}

@@ -10,6 +10,7 @@ import rootReducer from './reducers'
 import { rootEpic } from './epic'
 
 import 'normalize.css'
+import './style.css'
 
 const Header = styled.h1`
   color: green;

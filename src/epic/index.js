@@ -7,7 +7,7 @@ import { LOAD_ARTICLES, addArticles, toggleLoader } from './../actions'
 const searchArticles = (action$) => action$
   .pipe(
     ofType(LOAD_ARTICLES),
-    tap(() => toggleLoader(false)),
+    tap(() => toggleLoader(true)),
     switchMap(({ payload: searchQueryObject }) => getHeadlines(searchQueryObject)),
     map(addArticles),
     tap(() => toggleLoader(false))
