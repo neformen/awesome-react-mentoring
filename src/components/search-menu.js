@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { connect } from "react-redux"
-import { addArticles } from "./../redux/actions";
+import { addArticles, toggleLoader } from "./../redux/actions";
 import { CountryDropdown } from './country-dropdown'
 import { possibleCountries } from './../constants'
 import { SeachInput } from './search-input'
@@ -15,19 +15,21 @@ const SearchMenuWrapper = styled.form`
 `
 
 function mapDispatchToProps(dispatch) {
-  console.log(addArticles(articles))
   return {
-    addArticles: articles => dispatch(addArticles(articles))
+    addArticles: articles => dispatch(addArticles(articles)),
+    toggleLoader: showLoader => dispatch(toggleLoader(showLoader))
   };
 }
 
-const ConnectedSearchMenu = (props) => {
+const ConnectedSearchMenu = ({addArticles, toggleLoader}) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchCountry, setSearchCountry] = useState('')
   const getArticles = async (event) => {
     event.preventDefault()
+    toggleLoader(true)
     const data = await getHeadlines({ q: searchQuery, country: searchCountry })
-    props.addArticles(data.articles)
+    addArticles(data.articles)
+    toggleLoader(false)
   }
   return (
     <SearchMenuWrapper onSubmit={getArticles}>

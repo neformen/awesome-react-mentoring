@@ -12,17 +12,16 @@ const ListWrapper = styled.div`
 `
 
 const mapStateToProps = state => {
-  console.log(state);
-  return { articles: state.articles };
+  const { articles, showLoader } = state;
+  return { articles, showLoader };
 };
 
-const ConnectedArticleList = (prop) => {
-  console.log(prop)
-  let articleComponets = prop.articles.map((article, index) => <Article key={index} article={article} />)
+const ConnectedArticleList = ({articles, showLoader}) => {
+  const articleComponets = articles.map((article, index) => <Article key={index} article={article} />)
   return (
     <ListWrapper>
       {articleComponets}
-      <Loader showLoader={true} />
+      <Loader showLoader={showLoader} />
     </ListWrapper>
   )
 }

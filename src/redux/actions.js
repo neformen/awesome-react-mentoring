@@ -5,6 +5,7 @@ export const addArticles = articles => ({
   payload: articles 
 });
 
-export const toggleLoader = _ => ({
-  type: TOGGLE_LOADER
+export const toggleLoader = showLoader => ({
+  type: TOGGLE_LOADER,
+  payload: showLoader
 });

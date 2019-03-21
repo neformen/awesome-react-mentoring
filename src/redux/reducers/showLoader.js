@@ -1,15 +1,10 @@
 import { TOGGLE_LOADER } from "../actionTypes";
 
-const initialState = {
-    showLoader: false
-};
 
-const showLoader = (state = initialState, action) => {
+const showLoader = (state = false, action) => {
   switch (action.type) {
     case TOGGLE_LOADER: {
-      return Object.assign({}, state, {
-          showLoader: !state.showLoader
-      });
+      return action.payload
     }
     default: {
       return state;

@@ -9,10 +9,10 @@ const LoaderWrapper = styled.div`
   display: ${props => props.showLoader ? 'block' : 'none'};
 `
 
-export const Loader = (props) => {
+export const Loader = ({showLoader}) => {
   return (
-    <LoaderWrapper showLoader={props.showLoader}>
-        Hi All
+    <LoaderWrapper showLoader={showLoader}>
+        Loading...
     </LoaderWrapper>
   )
 }

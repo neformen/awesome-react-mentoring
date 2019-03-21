@@ -1,14 +1,10 @@
 import { ADD_ARTICLES } from "../actionTypes";
 
-const initialState = {
-    articles: []
-};
 
-export default function(state = initialState, action) {
-    console.log(state, action)
+export default function(state = [], action) {
   switch (action.type) {
     case ADD_ARTICLES: {
-      return Object.assign({}, state, { articles: action.payload });
+      return action.payload
     }
     default:
       return state;

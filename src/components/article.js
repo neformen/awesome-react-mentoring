@@ -4,7 +4,7 @@ import defaultImage from './../static/default-image.jpg'
 const ArticleWraper = styled.a`
   text-decoration: none;
   color: black;
-  :hover {
+  &:hover {
     color: green;
   }
 `
@@ -21,13 +21,13 @@ const ArticleTitle = styled.h3({
   marginBottom: '15px'
 })
 
-export const Article = (props) => {
-  let articleImageUrl = props.article.urlToImage ? props.article.urlToImage : defaultImage
+export const Article = ({article}) => {
+  let articleImageUrl = article.urlToImage ? article.urlToImage : defaultImage
   return (
-    <ArticleWraper href={props.article.url}>
-      <ArticleImage src={articleImageUrl} alt={props.article.title} />
-      <ArticleTitle>{props.article.title}</ArticleTitle>
-      <div>{props.article.description}</div>
+    <ArticleWraper href={article.url}>
+      <ArticleImage src={articleImageUrl} alt={article.title} />
+      <ArticleTitle>{article.title}</ArticleTitle>
+      <div>{article.description}</div>
     </ArticleWraper>
   )
 }
