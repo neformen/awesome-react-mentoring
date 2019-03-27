@@ -1,10 +1,11 @@
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { loadArticles } from './../actions'
 import { CountryDropdown } from './country-dropdown'
 import { possibleCountries } from './../constants'
 import { SeachInput } from './search-input'
 import { SeachButton } from './search-button'
 import { useState } from 'react'
-import { getHeadlines } from '../services/news'
 
 const SearchMenuWrapper = styled.form`
   display: flex;
@@ -12,13 +13,18 @@ const SearchMenuWrapper = styled.form`
   margin-bottom: 15px;
 `
 
-export const SearchMenu = (props) => {
+function mapDispatchToProps (dispatch) {
+  return {
+    loadArticles: searchQueryObject => dispatch(loadArticles(searchQueryObject))
+  }
+}
+
+const ConnectedSearchMenu = ({ loadArticles }) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchCountry, setSearchCountry] = useState('')
-  const getArticles = async (event) => {
-    event.preventDefault();
-    const data = await getHeadlines({ q: searchQuery, country: searchCountry });
-    props.addArticle(data.articles)
+  const getArticles = (event) => {
+    event.preventDefault()
+    loadArticles({ q: searchQuery, country: searchCountry })
   }
   return (
     <SearchMenuWrapper onSubmit={getArticles}>
@@ -28,3 +34,5 @@ export const SearchMenu = (props) => {
     </SearchMenuWrapper>
   )
 }
+
+export const SearchMenu = connect(null, mapDispatchToProps)(ConnectedSearchMenu)

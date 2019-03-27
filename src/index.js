@@ -1,15 +1,30 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { createStore, applyMiddleware } from 'redux'
+import { createEpicMiddleware } from 'redux-observable'
+import { Provider } from 'react-redux'
 import styled from 'styled-components'
 
 import { MainPage } from './components/main-page'
+import rootReducer from './reducers'
+import { rootEpic } from './epic'
 
-import 'normalize.css';
+import 'normalize.css'
+import './style.css'
 
 const Header = styled.h1`
   color: green;
   text-align: center;
 `
+
+const epicMiddleware = createEpicMiddleware()
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(epicMiddleware)
+)
+
+epicMiddleware.run(rootEpic)
 
 const App = () => {
   return (
@@ -19,7 +34,9 @@ const App = () => {
     </div>)
 }
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 )
 

@@ -6,7 +6,7 @@ const SearctInputWrapper = styled.input`
 
 export const SeachInput = (props) => {
   return (
-    <SearctInputWrapper 
+    <SearctInputWrapper
       onChange={(event) => props.setSearchQuery(event.target.value)} />
   )
 }

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 import { Article } from './article'
+import { Loader } from './loader'
 
 const ListWrapper = styled.div`
   display: grid;
@@ -8,11 +10,19 @@ const ListWrapper = styled.div`
   grid-row-gap: 10px;
 `
 
-export const ArticleList = (props) => {
-  let articles = props.articles.map((article, index) => <Article key={index} article={article} />)
+const mapStateToProps = state => {
+  const { articles, showLoader } = state
+  return { articles, showLoader }
+}
+
+const ConnectedArticleList = ({ articles, showLoader }) => {
+  const articleComponets = articles.map((article, index) => <Article key={index} {...article} />)
   return (
     <ListWrapper>
-      {articles}
+      {articleComponets}
+      <Loader showLoader={showLoader} />
     </ListWrapper>
   )
 }
+
+export const ArticleList = connect(mapStateToProps)(ConnectedArticleList)
