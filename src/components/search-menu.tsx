@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { loadArticles } from './../actions'
+import { loadArticles } from '../actions'
 import { CountryDropdown } from './country-dropdown'
-import { possibleCountries } from './../constants'
+import { possibleCountries } from '../constants'
 import { SeachInput } from './search-input'
 import { SeachButton } from './search-button'
 import { useState } from 'react'
+import * as React from 'react'
 
 const SearchMenuWrapper = styled.form`
   display: flex;
@@ -15,14 +16,14 @@ const SearchMenuWrapper = styled.form`
 
 function mapDispatchToProps (dispatch) {
   return {
-    loadArticles: searchQueryObject => dispatch(loadArticles(searchQueryObject))
+    loadArticles: (searchQueryObject) => dispatch(loadArticles(searchQueryObject))
   }
 }
 
 const ConnectedSearchMenu = ({ loadArticles }) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchCountry, setSearchCountry] = useState('')
-  const getArticles = (event) => {
+  const getArticles = (event: { preventDefault: () => void; }) => {
     event.preventDefault()
     loadArticles({ q: searchQuery, country: searchCountry })
   }
