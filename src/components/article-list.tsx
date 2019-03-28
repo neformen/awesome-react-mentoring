@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Article } from './article'
 import { Loader } from './loader'
 import * as React from 'react'
+import { IState, IArticle } from '../interfaces';
+import console = require('console');
 
 const ListWrapper = styled.div`
   display: grid;
@@ -11,17 +13,23 @@ const ListWrapper = styled.div`
   grid-row-gap: 10px;
 `
 
-const mapStateToProps = (state: { articles: any; showLoader: boolean; }) => {
-  const { articles, showLoader } = state
-  return { articles, showLoader }
+const mapStateToProps = ({ loader, articles }: IState): ArticleListProps => {
+  return { articles, loader }
 }
 
-const ConnectedArticleList = ({ articles, showLoader }) => {
-  const articleComponets = articles.map((article: JSX.IntrinsicAttributes & { urlToImage: any; url: any; title: any; description: any; }, index: React.ReactText) => <Article key={index} {...article} />)
+interface ArticleListProps {
+  articles: IArticle[];
+  loader: boolean;
+}
+
+
+
+const ConnectedArticleList = ({ articles, loader }: ArticleListProps) => {
+  const articleComponets = articles.map((article: IArticle, index: number) => <Article key={index} {...article} />)
   return (
     <ListWrapper>
       {articleComponets}
-      <Loader showLoader={showLoader} />
+      <Loader loader={loader} />
     </ListWrapper>
   )
 }

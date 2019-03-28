@@ -5,9 +5,13 @@ const SearctInputWrapper = styled.input`
     width: 450px;
 `
 
-export const SeachInput = (props) => {
+interface SeachInputProps {
+  setSearchQuery: (value: string) => void
+}
+
+export const SeachInput = ({setSearchQuery}: SeachInputProps) => {
   return (
     <SearctInputWrapper
-      onChange={(event) => props.setSearchQuery(event.target.value)} />
+      onChange={(event) => setSearchQuery(event.target.value)} />
   )
 }

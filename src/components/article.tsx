@@ -23,14 +23,14 @@ const ArticleTitle = styled.h3({
   marginBottom: '15px'
 })
 
-interface IArticle {
-  urlToImage: string;
-  url: string;
+interface ArticleProps {
+  description: string;
   title: string;
-  description: string
+  url: string;
+  urlToImage: string;
 }
 
-export const Article = ({ urlToImage, url, title, description } : IArticle) => {
+export const Article = ({ urlToImage, url, title, description } : ArticleProps) => {
   let articleImageUrl = urlToImage || defaultImage
   return (
     <ArticleWraper href={url}>

@@ -1,16 +1,22 @@
 import styled from 'styled-components'
 import * as React from 'react'
+import { possibleCountries } from '../constants'
 
 const CountryDropdownWrapper = styled.div`
 `
 
-export const CountryDropdown = (props) => {
-  let options = props.options.map((option, index) => (
-    <option value={option} key={index}>{option}</option>
+interface CountryDropdownProps {
+  selected: string;
+  onCountryChange: (value: string) => void
+}
+
+export const CountryDropdown = ({ selected, onCountryChange }: CountryDropdownProps) => {
+  let options = possibleCountries.map((country, index) => (
+    <option value={country} key={index}>{country}</option>
   ))
   return (
     <CountryDropdownWrapper>
-      <select value={props.selected} onChange={(event) => props.onCountryChange(event.target.value)}>
+      <select value={selected} onChange={(event) => onCountryChange(event.target.value)}>
         {options}
       </select>
     </CountryDropdownWrapper>
