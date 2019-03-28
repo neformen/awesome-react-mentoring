@@ -1,4 +1,4 @@
-function nonEmptyString (string) {
+function nonEmptyString (string: string): boolean {
   return typeof string === 'string' && string !== ''
 }
 

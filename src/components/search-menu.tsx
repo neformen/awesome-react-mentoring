@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { loadArticles } from '../actions'
 import { CountryDropdown } from './country-dropdown'
-import { possibleCountries } from '../constants'
 import { SeachInput } from './search-input'
 import { SeachButton } from './search-button'
 import { useState } from 'react'
@@ -14,22 +13,26 @@ const SearchMenuWrapper = styled.form`
   margin-bottom: 15px;
 `
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch): SearchMenuProps {
   return {
-    loadArticles: (searchQueryObject) => dispatch(loadArticles(searchQueryObject))
+    loadArticles: (searchQuery: Object) => dispatch(loadArticles(searchQuery))
   }
 }
 
-const ConnectedSearchMenu = ({ loadArticles }) => {
+interface SearchMenuProps {
+  loadArticles: (value: Object) => void
+}
+
+const ConnectedSearchMenu = ({ loadArticles }: SearchMenuProps) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchCountry, setSearchCountry] = useState('')
-  const getArticles = (event: { preventDefault: () => void; }) => {
+  const getArticles = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     loadArticles({ q: searchQuery, country: searchCountry })
   }
   return (
     <SearchMenuWrapper onSubmit={getArticles}>
-      <CountryDropdown options={possibleCountries} onCountryChange={setSearchCountry} />
+      <CountryDropdown selected={searchCountry} onCountryChange={setSearchCountry} />
       <SeachInput setSearchQuery={setSearchQuery} />
       <SeachButton />
     </SearchMenuWrapper>

@@ -1,7 +1,10 @@
-import { ajax } from 'rxjs/ajax'
-import { apiKey } from './../../config'
+import { ajax, AjaxResponse } from 'rxjs/ajax'
+import { apiKey } from '../../config'
 import { nonEmptyString } from './validations'
 import { map } from 'rxjs/operators'
+import { Observable } from 'rxjs';
+import { IArticle } from '../interfaces';
+import { AnyPtrRecord } from 'dns';
 
 const url = 'https://newsapi.org/v2'
 const headers = {
@@ -14,18 +17,18 @@ const everythingParams = ['q', 'sources', 'domains', 'excludeDomains', 'to', 'la
 const sourcesParams = ['category', 'language', 'country']
 
 const createQuery = (params, possibleParams) => Object.entries(params)
-  .filter((param) => possibleParams.includes(param[0]) && nonEmptyString(param[1]))
+  .filter((param: [string, string]) => possibleParams.includes(param[0]) && nonEmptyString(param[1]))
   .map(param => `${param[0]}=${param[1]}`)
   .join('&')
 
-const getHeadlines = (params) => {
+const getHeadlines = (params: AnyPtrRecord): Observable<IArticle[]> => {
   return ajax({
     url: `${url}/top-headlines?${createQuery(params, headlinesParams)}`,
     headers,
     crossDomain: true,
     method: 'GET'
   }).pipe(
-    map((data) => data.response.articles)
+    map(({response: data}: AjaxResponse) => data.articles)
   )
 }
 
