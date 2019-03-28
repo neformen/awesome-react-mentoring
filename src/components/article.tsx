@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-import defaultImage from './../static/default-image.jpg'
+import * as React from 'react'
+
+const defaultImage = require('./../static/default-image.jpg')
 
 const ArticleWraper = styled.a`
   text-decoration: none;
@@ -21,7 +23,14 @@ const ArticleTitle = styled.h3({
   marginBottom: '15px'
 })
 
-export const Article = ({ urlToImage, url, title, description }) => {
+interface IArticle {
+  urlToImage: string;
+  url: string;
+  title: string;
+  description: string
+}
+
+export const Article = ({ urlToImage, url, title, description } : IArticle) => {
   let articleImageUrl = urlToImage || defaultImage
   return (
     <ArticleWraper href={url}>
